@@ -31,7 +31,7 @@ DASA has two training-free inference components and an optional training adaptat
 
 - **Frame-wise Memory Management** prunes historical KV tokens with layer-wise similarity thresholds, preserves every token in the last frame as a reference anchor, and refreshes a token after its age reaches the maximum threshold τ. This reduces cache growth while retaining long-range context.
 - **Region-level Computation Allocation** locally aligns the current chunk with the reference frame. Tokens whose cosine similarity reaches γ reuse aligned features and exit early; the remaining dynamic regions continue through denoising.
-- **Dynamics-Guided Distillation Adaptation** counters the static bias that can arise when feature reuse is exposed during training. It weights the DMD loss by motion, using W = 1 + α · max(0, 1 − sim), so high-change regions receive stronger supervision.
+- **Dynamics-Guided Distillation Adaptation** counters the static bias that can arise when feature reuse is exposed during training.
 
 <a id="results"></a>
 
