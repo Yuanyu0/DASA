@@ -1,0 +1,10 @@
+This repository includes source from:
+
+- Self-Forcing: https://github.com/guandeh17/Self-Forcing
+  Original license: frameworks/self_forcing/LICENSE
+- LongLive: https://github.com/NVlabs/LongLive
+  Original license: frameworks/longlive/LICENSE
+- Wan: included inside each framework; existing file notices are retained.
+- CLIP: https://github.com/openai/CLIP
+  Original licenses: frameworks/self_forcing/CLIP/LICENSE and
+  frameworks/longlive/CLIP/LICENSE

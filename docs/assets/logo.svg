@@ -1,26 +1,40 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 56" role="img" aria-label="DASA sparse 3D cube">
-  <path d="M32 3 59 15 32 27 5 15Z" fill="#e9f1f6"/>
-  <path d="M5 15 32 27v26L5 41Z" fill="#d7e6ef"/>
-  <path d="m32 27 27-12v26L32 53Z" fill="#c9dce9"/>
-  <g fill="none" stroke="#7fa4be" stroke-width=".7" stroke-linecap="butt" opacity=".82">
+  <style>
+    :root {
+      --cube-outline: #245f8f;
+      --cube-grid: #7fa4be;
+      --active-edge: #f6f8fa;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --cube-outline: #9bc2dc;
+        --cube-grid: #6286a0;
+        --active-edge: #17324a;
+      }
+    }
+  </style>
+  <path d="M32 3 59 15 32 27 5 15Z" fill="none"/>
+  <path d="M5 15 32 27v26L5 41Z" fill="none"/>
+  <path d="m32 27 27-12v26L32 53Z" fill="none"/>
+  <g fill="none" stroke="var(--cube-grid)" stroke-width=".7" stroke-linecap="butt" opacity=".9">
     <path d="M41 7 14 19M50 11 23 23M23 7 50 19M14 11 41 23"/>
   </g>
-  <g stroke="#7fa4be" stroke-width=".7" stroke-linejoin="round">
-    <g fill="#d7e6ef">
+  <g stroke="var(--cube-grid)" stroke-width=".7" stroke-linejoin="round">
+    <g fill="none">
       <path d="M5 15 14 19 14 27.67 5 23.67Z"/><path d="M14 19 23 23 23 31.67 14 27.67Z"/><path d="M23 23 32 27 32 35.67 23 31.67Z"/>
       <path d="M5 23.67 14 27.67 14 36.33 5 32.33Z"/><path d="M23 31.67 32 35.67 32 44.33 23 40.33Z"/>
       <path d="M5 32.33 14 36.33 14 45 5 41Z"/><path d="M14 36.33 23 40.33 23 49 14 45Z"/><path d="M23 40.33 32 44.33 32 53 23 49Z"/>
     </g>
-    <g fill="#c9dce9">
+    <g fill="none">
       <path d="M32 27 41 23 41 31.67 32 35.67Z"/><path d="M41 23 50 19 50 27.67 41 31.67Z"/><path d="M50 19 59 15 59 23.67 50 27.67Z"/>
       <path d="M32 35.67 41 31.67 41 40.33 32 44.33Z"/><path d="M50 27.67 59 23.67 59 32.33 50 36.33Z"/>
       <path d="M32 44.33 41 40.33 41 49 32 53Z"/><path d="M41 40.33 50 36.33 50 45 41 49Z"/><path d="M50 36.33 59 32.33 59 41 50 45Z"/>
     </g>
   </g>
-  <path d="M15.2 29.7 21.8 32.65v5.7l-6.6-2.95Z" fill="#d58a43" stroke="#fff" stroke-width="1"/>
-  <path d="M32 12.7 38 15 32 17.3 26 15Z" fill="#d58a43" stroke="#fff" stroke-width="1"/>
-  <path d="m42.4 32.5 6.2-2.75v5.75l-6.2 2.75Z" fill="#d58a43" stroke="#fff" stroke-width="1"/>
-  <g fill="none" stroke="#245f8f" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M15.2 29.7 21.8 32.65v5.7l-6.6-2.95Z" fill="#d58a43" stroke="var(--active-edge)" stroke-width=".8"/>
+  <path d="M32 12.7 38 15 32 17.3 26 15Z" fill="#d58a43" stroke="var(--active-edge)" stroke-width=".8"/>
+  <path d="m42.4 32.5 6.2-2.75v5.75l-6.2 2.75Z" fill="#d58a43" stroke="var(--active-edge)" stroke-width=".8"/>
+  <g fill="none" stroke="var(--cube-outline)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round">
     <path d="M32 3 59 15v26L32 53 5 41V15Z"/>
     <path d="M32 27v26M5 15l27 12 27-12"/>
   </g>

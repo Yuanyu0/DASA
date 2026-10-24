@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dasa-video"
+version = "0.1.0"
+description = "Dynamics-Aware Sparse Attention for autoregressive video diffusion"
+readme = "README.md"
+requires-python = ">=3.10"
+
+[project.optional-dependencies]
+acceleration = [
+    "nvidia-pyindex", "nvidia-tensorrt", "pycuda", "onnx", "onnxruntime",
+    "onnxscript", "onnxconverter_common", "torchao",
+]
+prompt-extension = ["qwen-vl-utils", "decord"]
+distributed-attention = ["xfuser"]
+
+[project.scripts]
+dasa-run = "dasa.launch:main"
+
+[tool.setuptools.packages.find]
+include = ["dasa*"]
+exclude = ["frameworks*", "tests*", "_local_archive*"]

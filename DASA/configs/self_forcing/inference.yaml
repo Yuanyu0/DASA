@@ -1,0 +1,32 @@
+# 21 latent frames decode to 81 video frames.
+denoising_step_list: [1000, 750, 500, 250]
+warp_denoising_step: true
+num_frame_per_block: 3
+model_name: Wan2.1-T2V-1.3B
+model_kwargs:
+  timestep_shift: 5.0
+
+generator_ckpt: checkpoints/self_forcing_dmd.pt
+data_path: /path/to/prompts.txt
+extended_prompt_path: null
+output_folder: outputs/self_forcing/inference
+num_output_frames: 21
+num_samples: 1
+seed: 0
+use_ema: true
+save_with_index: true
+height: 480
+width: 832
+
+# DASA
+dasa:
+  token_selection:
+    similarity_threshold: 0.95
+    search_size: 3
+    dilation_size: 3
+  kv_compression:
+    shallow_threshold: 0.85
+    deep_threshold: 0.3
+    max_token_age: 4
+  motion_loss:
+    scale: 3.0

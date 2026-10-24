@@ -1,0 +1,42 @@
+# Local archives, datasets, and generated results
+/_local_archive/
+/data/
+/logs/
+/wandb/
+**/evaluation_results/
+**/videos/
+**/outputs/
+**/checkpoints/
+**/wan_models/
+**/longlive_models/
+
+# Python caches and build artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.cache/
+.pytest_cache/
+.venv/
+
+# Media and model weights are distributed separately
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.mp4
+*.mov
+*.avi
+*.webm
+*.wav
+*.mp3
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+
+# macOS metadata
+.DS_Store
