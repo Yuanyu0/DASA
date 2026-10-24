@@ -55,4 +55,32 @@
     if (event.key === 'Escape' && dialog.open) dialog.close();
   });
 
+  const copyCitation = document.querySelector('#copy-citation');
+  const bibtex = document.querySelector('#bibtex');
+  const citationStatus = document.querySelector('#citation-copy-status');
+  if (copyCitation && bibtex && citationStatus) {
+    copyCitation.addEventListener('click', async () => {
+      const value = bibtex.textContent.trim();
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(value);
+        } else {
+          const temporary = document.createElement('textarea');
+          temporary.value = value;
+          temporary.setAttribute('readonly', '');
+          temporary.style.position = 'fixed';
+          temporary.style.opacity = '0';
+          document.body.appendChild(temporary);
+          temporary.select();
+          const copied = document.execCommand('copy');
+          temporary.remove();
+          if (!copied) throw new Error('Clipboard copy failed');
+        }
+        citationStatus.textContent = 'BibTeX copied to clipboard.';
+      } catch {
+        citationStatus.textContent = 'Copy failed. Select the BibTeX text and copy it manually.';
+      }
+    });
+  }
+
 })();
