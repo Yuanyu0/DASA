@@ -1,10 +1,8 @@
 <div align="center">
 
-<h1><img src="../docs/assets/logo.svg" alt="DASA sparse-cube logo" height="42"> DASA</h1>
+# <img src="docs/assets/logo.svg" alt="DASA sparse-cube logo" height="42" align="top"> Dynamics-Aware Sparse Attention for Efficient Autoregressive Video Diffusion
 
-### Dynamics-Aware Sparse Attention<br>for Efficient Autoregressive Video Diffusion
-
-[![Python 3.10](https://img.shields.io/badge/Python-3.10-3776AB?logo=python&logoColor=white)](requirements.txt)
+[![Python 3.10](https://img.shields.io/badge/Python-3.10-3776AB?logo=python&logoColor=white)](DASA/requirements.txt)
 [![arXiv](https://img.shields.io/badge/arXiv-2610.26262-b31b1b?logo=arxiv&logoColor=white)](https://arxiv.org/abs/2610.26262)
 [![Project Page](https://img.shields.io/badge/Project-Page-245f8f?logo=githubpages&logoColor=white)](https://yuanyu0.github.io/DASA/)
 
@@ -26,7 +24,7 @@
 **Dynamics-Aware Sparse Attention (DASA)** accelerates chunk-wise autoregressive video diffusion by exploiting temporal redundancy: stable regions can reuse past features, while memory and denoising effort are focused on tokens that carry new visual information.
 
 <div align="center">
-<img src="../docs/assets/method.png" alt="DASA overview: frame-wise memory management and region-level computation allocation" width="96%">
+<img src="docs/assets/method.png" alt="DASA overview: frame-wise memory management and region-level computation allocation" width="96%">
 </div>
 
 DASA has two training-free inference components and an optional training adaptation:
@@ -47,9 +45,10 @@ DASA raises throughput from 18.42 to 26.21 FPS on Self-Forcing (1.42×) and from
 
 ## 🛠️ Installation
 
-The pinned environment targets Linux x86_64, Python 3.10, CUDA 12.4, and PyTorch 2.5.1. Run commands from this code directory.
+The pinned environment targets Linux x86_64, Python 3.10, CUDA 12.4, and PyTorch 2.5.1. Start from the repository root and enter `DASA/` for code commands.
 
 ```bash
+cd DASA
 export PYTHONNOUSERSITE=1
 conda create -n dasa python=3.10 pip -y
 conda activate dasa
@@ -60,7 +59,10 @@ pip install -r requirements.txt
 
 ## 📦 Model weights
 
+Run these commands from the `DASA/` code directory:
+
 ```bash
+cd DASA
 huggingface-cli download Wan-AI/Wan2.1-T2V-1.3B --local-dir wan_models/Wan2.1-T2V-1.3B
 huggingface-cli download gdhe17/Self-Forcing checkpoints/self_forcing_dmd.pt --local-dir .
 huggingface-cli download Efficient-Large-Model/LongLive-1.3B --local-dir longlive_models
@@ -70,34 +72,38 @@ huggingface-cli download Efficient-Large-Model/LongLive-1.3B --local-dir longliv
 
 ## 🎬 Inference
 
-Set `data_path` in the inference YAML to a text file with one prompt per line. DASA parameters are in each YAML's `dasa` section.
+Set `data_path` in each config under `DASA/configs/` to a text file with one prompt per line. DASA parameters are grouped under the `dasa` key.
 
 | Backbone | Inference | Training |
 | :--- | :---: | :---: |
-| Self-Forcing | [Config](configs/self_forcing/inference.yaml) | [Config](configs/self_forcing/finetune.yaml) |
-| LongLive | [Config](configs/longlive/inference.yaml) | [Config](configs/longlive/finetune.yaml) |
+| Self-Forcing | [Config](DASA/configs/self_forcing/inference.yaml) | [Config](DASA/configs/self_forcing/finetune.yaml) |
+| LongLive | [Config](DASA/configs/longlive/inference.yaml) | [Config](DASA/configs/longlive/finetune.yaml) |
+
+Run from the `DASA/` code directory:
 
 ```bash
+cd DASA
 CUDA_VISIBLE_DEVICES=0 python -m dasa.launch self_forcing inference
 CUDA_VISIBLE_DEVICES=0 python -m dasa.launch longlive inference
 ```
 
-Defaults produce 5-second videos in `outputs/<backbone>/inference/`. Use `--config_path PATH` for custom settings.
+Defaults produce 5-second videos in `DASA/outputs/<backbone>/inference/`. Use `--config_path PATH` to select a custom config.
 
 <a id="training"></a>
 
 ## 🚀 Training
 
-Download the 14B teacher and set training prompt paths in `finetune.yaml`. Self-Forcing trains full weights; LongLive trains LoRA adapters.
+Download the 14B teacher and set training prompt paths in the `finetune.yaml` files. Self-Forcing trains full weights; LongLive trains LoRA adapters.
 
 ```bash
+cd DASA
 huggingface-cli download Wan-AI/Wan2.1-T2V-14B --local-dir wan_models/Wan2.1-T2V-14B
 
 CUDA_VISIBLE_DEVICES=0,1,2,3 python -m dasa.launch self_forcing finetune --nproc_per_node 4
 CUDA_VISIBLE_DEVICES=0,1,2,3 python -m dasa.launch longlive finetune --nproc_per_node 4
 ```
 
-Checkpoints are saved in `outputs/<backbone>/finetune/`. Add `--max_steps N` to limit training steps.
+Checkpoints are saved in `DASA/outputs/<backbone>/finetune/`. Add `--max_steps N` to limit training steps.
 
 <a id="citation"></a>
 
@@ -114,4 +120,4 @@ Checkpoints are saved in `outputs/<backbone>/finetune/`. Add `--max_steps N` to 
 
 ## 🤝 Acknowledgements
 
-Built on [Self-Forcing](https://github.com/guandeh17/Self-Forcing), [LongLive](https://github.com/NVlabs/LongLive), [Wan2.1](https://github.com/Wan-Video/Wan2.1) and [CLIP](https://github.com/openai/CLIP). See [NOTICE](NOTICE) for upstream licenses.
+Built on [Self-Forcing](https://github.com/guandeh17/Self-Forcing), [LongLive](https://github.com/NVlabs/LongLive), [Wan2.1](https://github.com/Wan-Video/Wan2.1) and [CLIP](https://github.com/openai/CLIP). See [NOTICE](DASA/NOTICE) for upstream licenses.
