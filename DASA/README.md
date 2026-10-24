@@ -24,7 +24,7 @@
 **Dynamics-Aware Sparse Attention (DASA)** accelerates chunk-wise autoregressive video diffusion by exploiting temporal redundancy: stable regions can reuse past features, while memory and denoising effort are focused on tokens that carry new visual information.
 
 <div align="center">
-<img src="docs/assets/method.png" alt="DASA overview: frame-wise memory management and region-level computation allocation" width="96%">
+<img src="../docs/assets/method.png" alt="DASA overview: frame-wise memory management and region-level computation allocation" width="96%">
 </div>
 
 DASA has two training-free inference components and an optional training adaptation:
