@@ -1,6 +1,6 @@
 <div align="center">
 
-# <img src="docs/assets/logo.svg" alt="DASA sparse-cube logo" height="42" align="top"> Dynamics-Aware Sparse Attention for Efficient Autoregressive Video Diffusion
+# <img src="../docs/assets/logo.svg" alt="DASA sparse-cube logo" height="42" align="top"> Dynamics-Aware Sparse Attention for Efficient Autoregressive Video Diffusion
 
 [![Python 3.10](https://img.shields.io/badge/Python-3.10-3776AB?logo=python&logoColor=white)](DASA/requirements.txt)
 [![arXiv](https://img.shields.io/badge/arXiv-2610.26262-b31b1b?logo=arxiv&logoColor=white)](https://arxiv.org/abs/2610.26262)
